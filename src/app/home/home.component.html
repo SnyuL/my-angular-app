@@ -1,0 +1,52 @@
+<div [id]="'home-app'">
+
+<p [style.fontSize.px]="25">{{title}}</p>
+
+<div [class]="{'line': true}"></div>
+
+<div [style]="{'margin':'20px'}">
+    <div>
+        <span *ngIf="isVisible">true</span>
+        <span *ngIf="!isVisible">false</span>
+
+        @if (isVisible) {
+            <span>true</span>
+          } @else {
+            <span>false</span>
+          }
+
+          <span *ngIf="isVisible; else otherContent">true</span>
+            <ng-template #otherContent>
+            <span>false</span>
+          </ng-template>
+    </div>
+    <p-button (click) = "share()" class="p-button-success" icon="pi pi-check">btn</p-button>
+</div>
+
+<div [class]="'line'"></div>
+<input placeholder="input here" pInputText [(ngModel)]="inputValue" (input)="onInput($event)" />
+
+<div [class]="'line'"></div>
+
+<!-- for  -->
+<p-table [columns]="cols" [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <!-- <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th> -->
+            @for (col of columns; track col.field) {
+                <th>{{ col.header }}</th>
+              }
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{ rowData[col.field] }}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>
+
