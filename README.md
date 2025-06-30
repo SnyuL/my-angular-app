@@ -411,7 +411,7 @@ constructor(private route: ActivatedRoute) {
 
 ```
 
-### 15.🔒路由守卫（CanActivate）
+### 15.路由守卫（CanActivate）
 
 ```ts
 @Injectable()
@@ -424,3 +424,12 @@ export class AuthGuard implements CanActivate {
 ```
 
 ```ts
+{
+  path: 'admin',
+  component: AdminComponent,
+  canActivate: [AuthGuard]
+}
+
+```
+
+
