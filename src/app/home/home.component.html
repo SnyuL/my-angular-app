@@ -25,6 +25,7 @@
 
 <div [class]="'line'"></div>
 <input placeholder="input here" pInputText [(ngModel)]="inputValue" (input)="onInput($event)" />
+<div>{{inputValue}}</div>
 
 <div [class]="'line'"></div>
 
@@ -49,8 +50,10 @@
     </ng-template>
 </p-table>
 
+<app-child [message]="parentMessage" (messageEvent)="receiveMessage($event)"></app-child>
+
 <p-button 
-  (click)="goToTest()" 
+  (click)="goToTest(1)" 
   class="p-button-info" 
   icon="pi pi-external-link"
   label="跳转到Test页面">

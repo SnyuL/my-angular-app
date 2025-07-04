@@ -1,0 +1,45 @@
+<div class="component-container">
+    <!-- MegaMenu 导航 -->
+    <p-megaMenu [model]="menuItems" class="menu-bar"></p-megaMenu>
+  
+    <div class="content-section">
+      <h2>文档浏览器</h2>
+  
+      <!-- 视图选择 -->
+      <div class="control-group">
+        <label>视图模式：</label>
+        <p-selectButton 
+          [options]="viewOptions" 
+          [(ngModel)]="selectedView"
+          (onChange)="onViewChange()"
+          optionLabel="label"
+          optionValue="value">
+          <ng-template let-item>
+            <i [class]="item.icon"></i> {{ item.label }}
+          </ng-template>
+        </p-selectButton>
+      </div>
+  
+      <!-- 排序选项 -->
+      <div class="control-group">
+        <label>排序方式：</label>
+        <div class="radio-group">
+          <div *ngFor="let option of sortOptions" class="radio-option">
+            <p-radioButton 
+              [name]="'sort'" 
+              [value]="option.value" 
+              [(ngModel)]="selectedSort"
+              (onClick)="onSortChange()"
+              [label]="option.name">
+            </p-radioButton>
+          </div>
+        </div>
+      </div>
+  
+      <!-- 内容区域 -->
+      <div class="content-area">
+        <p>当前视图: {{ selectedView }}</p>
+        <p>排序方式: {{ selectedSort }}</p>
+      </div>
+    </div>
+  </div>

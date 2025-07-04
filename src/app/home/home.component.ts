@@ -2,15 +2,14 @@ import { Component, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
-import { log } from 'console';
+import { ChildComponent } from './components/child/child.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonModule, TableModule, InputTextModule],
+  imports: [CommonModule, FormsModule, ButtonModule, TableModule, InputTextModule, ChildComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -18,6 +17,11 @@ export class HomeComponent {
   title: string = 'Welcome to My Angular App';
   isVisible: boolean = true;
   inputValue: string = '';
+  parentMessage = 'Hello from parent';
+  receiveMessage(msg: string) {
+    console.log(msg);
+  }
+
 
   constructor(private router: Router) { }
 
@@ -70,7 +74,7 @@ export class HomeComponent {
     this.inputValue = input.value;
   }
 
-  goToTest() {
-    this.router.navigate(['/test']);
+  goToTest(id: number) {
+    this.router.navigate(['/test',id]);
   }
 }
